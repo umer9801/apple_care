@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   useEffect(() => {
     setIsVisible(true);
@@ -49,94 +48,98 @@ export default function Home() {
     <main className="min-h-screen bg-background overflow-hidden">
       <Navigation />
 
-      {/* Hero Section - Modern Glassmorphism */}
-      <section className="relative pt-32 pb-24 px-4 bg-gradient-to-br from-white via-blue-50 to-green-50">
+      {/* Hero Section - Mobile Optimized */}
+      <section className="relative pt-24 pb-16 px-4 bg-gradient-to-br from-white via-blue-50 to-green-50">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl animate-blob" />
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-green-200/20 rounded-full blur-3xl animate-blob" style={{ animationDelay: '2s' }} />
-          <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-blue-100/20 rounded-full blur-3xl animate-blob" style={{ animationDelay: '4s' }} />
+          <div className="absolute top-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-200/20 rounded-full blur-3xl animate-blob" />
+          <div className="absolute bottom-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-green-200/20 rounded-full blur-3xl animate-blob" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-1/2 left-1/3 w-48 h-48 md:w-80 md:h-80 bg-blue-100/20 rounded-full blur-3xl animate-blob" style={{ animationDelay: '4s' }} />
         </div>
 
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
-            <div className={`space-y-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            <div className={`space-y-6 lg:space-y-8 text-center lg:text-left ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
               <div className="inline-block">
-                <div className="glass px-4 py-2 rounded-full text-sm font-semibold text-primary flex items-center gap-2">
+                <div className="glass px-3 py-2 rounded-full text-xs md:text-sm font-semibold text-primary flex items-center gap-2">
                   <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                   Fast & Reliable Repair Service
                 </div>
               </div>
 
-              <h1 className="text-6xl lg:text-7xl font-bold leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
                 <span className="gradient-text">Your Device,</span>
                 <br />
                 <span className="text-foreground">Our Care</span>
               </h1>
 
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                Professional mobile repair services for iPhone, iPad, and Android devices. We deliver quality repairs with lightning-fast turnaround times and expert technicians.
+              <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                Professional mobile repair services for iPhone, iPad, and Android devices. We deliver quality repairs with lightning-fast turnaround times.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4 justify-center lg:justify-start">
                 <Link
-                  href="/services"
-                  className="bg-gradient-to-r from-primary to-accent text-primary-foreground px-8 py-4 rounded-xl font-semibold hover:shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group"
+                  href="/book"
+                  className="bg-gradient-to-r from-primary to-accent text-primary-foreground px-6 py-3 md:px-8 md:py-4 rounded-xl font-semibold hover:shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group text-sm md:text-base"
                 >
                   Book Now
-                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href="/about"
-                  className="glass text-primary px-8 py-4 rounded-xl font-semibold hover:bg-secondary/50 transition-all duration-300 border border-primary/30"
+                  className="glass text-primary px-6 py-3 md:px-8 md:py-4 rounded-xl font-semibold hover:bg-secondary/50 transition-all duration-300 border border-primary/30 text-sm md:text-base"
                 >
                   Learn More
                 </Link>
               </div>
 
-              {/* Features List */}
-              <div className="grid grid-cols-2 gap-4 pt-8">
+              {/* Features List - Mobile Optimized */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 pt-6 lg:pt-8 max-w-md mx-auto lg:max-w-none">
                 {features.slice(0, 2).map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="text-primary mt-1">{feature.icon}</div>
+                  <div key={index} className="flex items-start gap-3 text-left">
+                    <div className="text-primary mt-1 flex-shrink-0">{feature.icon}</div>
                     <div>
-                      <p className="font-semibold text-sm text-foreground">{feature.title}</p>
-                      <p className="text-xs text-muted-foreground">{feature.description}</p>
+                      <p className="font-semibold text-sm md:text-base text-foreground">{feature.title}</p>
+                      <p className="text-xs md:text-sm text-muted-foreground">{feature.description}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right Content - Visual */}
-            <div className={`relative h-96 lg:h-full flex items-center justify-center ${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`}>
-              <div className="glass p-8 rounded-3xl border border-primary/30 animate-float">
-                <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl p-12 text-center">
-                  <Smartphone className="w-32 h-32 text-primary mx-auto animate-pulse" />
-                  <p className="text-muted-foreground mt-4 font-semibold">Expert Device Repair</p>
+            {/* Right Content - Mobile Optimized */}
+            <div className={`relative h-64 md:h-80 lg:h-96 flex items-center justify-center mt-8 lg:mt-0 ${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`}>
+              <div className="glass p-4 md:p-6 lg:p-8 rounded-2xl lg:rounded-3xl border border-primary/30 animate-float">
+                <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl lg:rounded-2xl p-6 md:p-8 lg:p-12 text-center">
+                  <Smartphone className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 text-primary mx-auto animate-pulse" />
+                  <p className="text-muted-foreground mt-2 md:mt-4 font-semibold text-sm md:text-base">Expert Device Repair</p>
                 </div>
               </div>
-              <div className="absolute w-40 h-40 bg-primary/5 rounded-full blur-2xl -top-10 -right-10 animate-pulse" />
+              <div className="absolute w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 bg-primary/5 rounded-full blur-2xl -top-6 -right-6 lg:-top-10 lg:-right-10 animate-pulse" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Quick Links Section */}
-      <section className="py-12 px-4 bg-gradient-to-r from-primary/5 to-accent/5">
+      {/* Quick Links Section - Mobile Optimized */}
+      <section className="py-8 md:py-12 px-4 bg-gradient-to-r from-primary/5 to-accent/5">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {quickLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.href}
-                className="glass p-6 rounded-xl hover:border-primary transition-all group flex items-center gap-4 animate-fade-in-up"
+                className="glass p-4 md:p-6 rounded-xl hover:border-primary transition-all group flex items-center gap-3 md:gap-4 animate-fade-in-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="text-primary group-hover:scale-110 transition-transform">{link.icon}</div>
-                <span className="font-semibold group-hover:text-primary transition-colors">{link.label}</span>
-                <ArrowRight size={18} className="ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                <div className="text-primary group-hover:scale-110 transition-transform flex-shrink-0">
+                  <div className="w-6 h-6 md:w-8 md:h-8">
+                    {link.icon}
+                  </div>
+                </div>
+                <span className="font-semibold group-hover:text-primary transition-colors text-sm md:text-base">{link.label}</span>
+                <ArrowRight size={16} className="ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all flex-shrink-0" />
               </Link>
             ))}
           </div>

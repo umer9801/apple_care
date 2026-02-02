@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Navigation from '@/components/Navigation';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   CheckCircle,
   Calendar,
@@ -10,7 +10,6 @@ import {
 } from 'lucide-react';
 
 export default function BookNow() {
-  const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,10 +21,6 @@ export default function BookNow() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
 
   const deviceTypes = [
     'iPhone 15 Pro',
@@ -139,48 +134,37 @@ export default function BookNow() {
   };
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-gray-50">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 overflow-hidden bg-gradient-to-br from-white via-blue-50 to-green-50">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-100/20 rounded-full blur-3xl animate-blob" />
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-green-100/20 rounded-full blur-3xl animate-blob" style={{ animationDelay: '2s' }} />
-        </div>
-
-        <div className="max-w-7xl mx-auto">
-          <div className={`space-y-6 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <h1 className="text-5xl md:text-6xl font-bold gradient-text">
-              Book Your Service
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Schedule your repair appointment in just a few steps
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Booking Form Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-3xl mx-auto">
-          <div className="p-8 rounded-2xl border border-blue-200 bg-blue-50">
+      <section className="pt-24 pb-12 px-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-200">
+            <div className="text-center mb-8">
+              <h1 className="text-2xl md:text-3xl font-bold gradient-text mb-2">
+                Book Your Service
+              </h1>
+              <p className="text-muted-foreground">
+                Schedule your repair appointment
+              </p>
+            </div>
             {submitted ? (
-              <div className="flex items-center justify-center gap-4 py-12 animate-fade-in-up">
-                <CheckCircle className="w-16 h-16 text-primary" />
+              <div className="flex flex-col items-center justify-center gap-4 py-8 text-center">
+                <CheckCircle className="w-12 h-12 md:w-16 md:h-16 text-primary" />
                 <div>
-                  <h3 className="text-2xl font-bold text-foreground">
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
                     Booking Confirmed!
                   </h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground text-sm md:text-base">
                     We'll contact you shortly to confirm the appointment details.
                   </p>
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                 {/* Name and Email */}
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <div>
                     <label className="block text-sm font-medium mb-2">
                       Full Name *
@@ -190,16 +174,16 @@ export default function BookNow() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 rounded-lg bg-input border transition-all ${
+                      className={`w-full px-3 py-2 md:px-4 md:py-3 rounded-lg bg-input border transition-all text-sm md:text-base ${
                         errors.name
                           ? 'border-accent'
-                          : 'border-border hover:border-primary'
+                          : 'border-border hover:border-primary focus:border-primary'
                       } text-foreground placeholder-muted-foreground`}
                       placeholder="John Doe"
                     />
                     {errors.name && (
-                      <p className="text-accent text-sm mt-1 flex items-center gap-2">
-                        <AlertCircle size={16} />
+                      <p className="text-accent text-xs md:text-sm mt-1 flex items-center gap-2">
+                        <AlertCircle size={14} />
                         {errors.name}
                       </p>
                     )}
@@ -213,16 +197,16 @@ export default function BookNow() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 rounded-lg bg-input border transition-all ${
+                      className={`w-full px-3 py-2 md:px-4 md:py-3 rounded-lg bg-input border transition-all text-sm md:text-base ${
                         errors.email
                           ? 'border-accent'
-                          : 'border-border hover:border-primary'
+                          : 'border-border hover:border-primary focus:border-primary'
                       } text-foreground placeholder-muted-foreground`}
                       placeholder="john@example.com"
                     />
                     {errors.email && (
-                      <p className="text-accent text-sm mt-1 flex items-center gap-2">
-                        <AlertCircle size={16} />
+                      <p className="text-accent text-xs md:text-sm mt-1 flex items-center gap-2">
+                        <AlertCircle size={14} />
                         {errors.email}
                       </p>
                     )}
@@ -230,7 +214,7 @@ export default function BookNow() {
                 </div>
 
                 {/* Phone and Device Type */}
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <div>
                     <label className="block text-sm font-medium mb-2">
                       Phone Number *
@@ -240,16 +224,16 @@ export default function BookNow() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 rounded-lg bg-input border transition-all ${
+                      className={`w-full px-3 py-2 md:px-4 md:py-3 rounded-lg bg-input border transition-all text-sm md:text-base ${
                         errors.phone
                           ? 'border-accent'
-                          : 'border-border hover:border-primary'
+                          : 'border-border hover:border-primary focus:border-primary'
                       } text-foreground placeholder-muted-foreground`}
                       placeholder="1234567890"
                     />
                     {errors.phone && (
-                      <p className="text-accent text-sm mt-1 flex items-center gap-2">
-                        <AlertCircle size={16} />
+                      <p className="text-accent text-xs md:text-sm mt-1 flex items-center gap-2">
+                        <AlertCircle size={14} />
                         {errors.phone}
                       </p>
                     )}
@@ -262,10 +246,10 @@ export default function BookNow() {
                       name="deviceType"
                       value={formData.deviceType}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 rounded-lg bg-input border transition-all ${
+                      className={`w-full px-3 py-2 md:px-4 md:py-3 rounded-lg bg-input border transition-all text-sm md:text-base ${
                         errors.deviceType
                           ? 'border-accent'
-                          : 'border-border hover:border-primary'
+                          : 'border-border hover:border-primary focus:border-primary'
                       } text-foreground`}
                     >
                       <option value="">Select a device</option>
@@ -276,8 +260,8 @@ export default function BookNow() {
                       ))}
                     </select>
                     {errors.deviceType && (
-                      <p className="text-accent text-sm mt-1 flex items-center gap-2">
-                        <AlertCircle size={16} />
+                      <p className="text-accent text-xs md:text-sm mt-1 flex items-center gap-2">
+                        <AlertCircle size={14} />
                         {errors.deviceType}
                       </p>
                     )}
@@ -293,10 +277,10 @@ export default function BookNow() {
                     name="issue"
                     value={formData.issue}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-lg bg-input border transition-all ${
+                    className={`w-full px-3 py-2 md:px-4 md:py-3 rounded-lg bg-input border transition-all text-sm md:text-base ${
                       errors.issue
                         ? 'border-accent'
-                        : 'border-border hover:border-primary'
+                        : 'border-border hover:border-primary focus:border-primary'
                     } text-foreground`}
                   >
                     <option value="">Select the issue</option>
@@ -307,15 +291,15 @@ export default function BookNow() {
                     ))}
                   </select>
                   {errors.issue && (
-                    <p className="text-accent text-sm mt-1 flex items-center gap-2">
-                      <AlertCircle size={16} />
+                    <p className="text-accent text-xs md:text-sm mt-1 flex items-center gap-2">
+                      <AlertCircle size={14} />
                       {errors.issue}
                     </p>
                   )}
                 </div>
 
                 {/* Date and Time */}
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <div>
                     <label className="block text-sm font-medium mb-2">
                       Preferred Date *
@@ -326,15 +310,15 @@ export default function BookNow() {
                       value={formData.date}
                       onChange={handleChange}
                       min={new Date().toISOString().split('T')[0]}
-                      className={`w-full px-4 py-3 rounded-lg bg-input border transition-all ${
+                      className={`w-full px-3 py-2 md:px-4 md:py-3 rounded-lg bg-input border transition-all text-sm md:text-base ${
                         errors.date
                           ? 'border-accent'
-                          : 'border-border hover:border-primary'
+                          : 'border-border hover:border-primary focus:border-primary'
                       } text-foreground`}
                     />
                     {errors.date && (
-                      <p className="text-accent text-sm mt-1 flex items-center gap-2">
-                        <AlertCircle size={16} />
+                      <p className="text-accent text-xs md:text-sm mt-1 flex items-center gap-2">
+                        <AlertCircle size={14} />
                         {errors.date}
                       </p>
                     )}
@@ -347,10 +331,10 @@ export default function BookNow() {
                       name="time"
                       value={formData.time}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 rounded-lg bg-input border transition-all ${
+                      className={`w-full px-3 py-2 md:px-4 md:py-3 rounded-lg bg-input border transition-all text-sm md:text-base ${
                         errors.time
                           ? 'border-accent'
-                          : 'border-border hover:border-primary'
+                          : 'border-border hover:border-primary focus:border-primary'
                       } text-foreground`}
                     >
                       <option value="">Select a time</option>
@@ -365,8 +349,8 @@ export default function BookNow() {
                       <option value="05:00 PM">05:00 PM</option>
                     </select>
                     {errors.time && (
-                      <p className="text-accent text-sm mt-1 flex items-center gap-2">
-                        <AlertCircle size={16} />
+                      <p className="text-accent text-xs md:text-sm mt-1 flex items-center gap-2">
+                        <AlertCircle size={14} />
                         {errors.time}
                       </p>
                     )}
@@ -376,9 +360,9 @@ export default function BookNow() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground py-4 rounded-lg font-bold text-lg hover:shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group"
+                  className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group mt-6"
                 >
-                  <Calendar size={20} />
+                  <Calendar size={18} />
                   <span className="group-hover:translate-x-1 transition-transform">
                     Confirm Booking
                   </span>
@@ -388,51 +372,6 @@ export default function BookNow() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-card border-t border-border py-12 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <h3 className="font-bold text-lg mb-4 gradient-text">Apple Care</h3>
-              <p className="text-muted-foreground">
-                Your trusted mobile repair service provider
-              </p>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>
-                  <a href="/" className="hover:text-primary transition-colors">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="/about" className="hover:text-primary transition-colors">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="/services" className="hover:text-primary transition-colors">
-                    Services
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Contact</h4>
-              <p className="text-muted-foreground">
-                Phone: (555) 123-4567
-                <br />
-                Email: support@applecare.com
-              </p>
-            </div>
-          </div>
-          <div className="border-t border-border pt-8 text-center text-muted-foreground">
-            <p>&copy; 2025 Apple Care. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }
