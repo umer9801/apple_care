@@ -41,7 +41,7 @@ export default function Navigation() {
               </Link>
             ))}
             <Link
-              href="/services"
+              href="/book"
               className="bg-gradient-to-r from-primary to-accent text-primary-foreground px-6 py-2 rounded-lg font-medium hover:shadow-lg hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300"
             >
               Book Now
@@ -72,7 +72,7 @@ export default function Navigation() {
                 </Link>
               ))}
               <Link
-                href="/services"
+                href="/book"
                 className="bg-gradient-to-r from-primary to-accent text-primary-foreground px-4 py-2 rounded-lg font-medium text-center hover:shadow-lg transition-all"
                 onClick={() => setIsOpen(false)}
               >
